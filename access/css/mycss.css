@@ -1,0 +1,96 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+li{
+    list-style: none;
+}
+a:hover{
+    color : red;
+    text-decoration: none;
+}
+.wrapper{
+   height: 400px;
+   border-radius: 5px;
+   border: 2px solid green;
+}
+.menu{
+   height: 150px;
+   border-radius: 5px;
+   box-shadow: 0 1px 6px 0 grey;
+   margin: 10px auto;
+}
+.center{
+   margin:0px auto;
+}
+.login{
+   margin:150px auto;
+   border-radius: 20px;
+   border : 2px solid pink;
+   padding: 25px;
+   transition: 0.5s;
+   position: relative;
+}
+.login:hover{
+   margin:110px auto;
+   border-radius: 20px;
+   box-shadow: 3px 3px 7px grey;
+   padding: 25px;
+   border : none;
+   transition: 1s;
+   transform: scale(1.1);
+}
+.check{
+   cursor: pointer;
+   position: absolute;
+   right: 40px;
+   bottom: 86px;
+}
+.border20{
+   border-radius: 20px;
+}
+.option{
+    position: relative;
+    border-radius: 50%;
+    border : 1px solid red ;
+    background-color: pink;
+    width: 280px;
+    height: 280px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+.option:hover{
+    transform: scale(1.2);
+    /* transform: rotate(360deg); */
+    transition: 0.5s;
+}
+.danhmuc{
+    display: block;
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    bottom: 110px;
+    right: 80px;
+}
+#video_background {
+    position: absolute;
+    
+    bottom: 0px;
+    
+    right: 0px;
+    
+    min-width: 100%;
+    
+    min-height: 100%;
+    
+    width: auto;
+    
+    height: auto;
+    
+    z-index: -1000;
+    
+    overflow: hidden;
+    
+}
+.box{
+    margin-right :40px;
+}
