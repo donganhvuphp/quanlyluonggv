@@ -32,12 +32,63 @@
             include_once "Views/manager/luong/tinhluong.php";
         }
 
-        public function baoCaoLuong_m()
+        public function baoCaoLuong_c()
         {
             if(isset($_SESSION['sll'])){
                 $bangLuong = $this->manager->bangLuong_m($_SESSION['sll']);
             }
             include_once "Views/manager/luong/bangluong.php";
+        }
+
+
+        public function lichSuLuong_c()
+        {
+            $LichSuLuong = $this->manager->LichSuLuong_m() ;
+            include_once "Views/manager/luong/lichsuluong.php";
+        }
+
+        public function chiTietLuong_c()
+        {
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $chiTietLS_Luong = $this->manager->chiTietLS_Luong_m($id);
+            }
+            include_once "Views/manager/luong/chitietluong.php";
+        }
+
+        public function baoCao_c()
+        {
+            include_once "Views/manager/baocao/baocao.php";
+        }
+
+        public function bcTangLuong_c()
+        {
+            $danhSachNV_tangluong = $this->manager->danhSachNV_tangluong();
+            include_once "Views/manager/baocao/bctangluong.php";
+        }
+
+        public function bcVeHuu_c()
+        {
+            $danhSachNV_vehuu = $this->manager->danhSachNV_vehuu() ;
+            include_once "Views/manager/baocao/bcvehuu.php";
+        }
+
+        public function thongTinCV()
+        {
+            $danhSachCV = $this->manager->danhSachCV_m() ;
+            include_once "Views/manager/chucvu/thongtincv.php";
+        }
+
+        public function thongTinPB()
+        {
+            $danhSachPB = $this->manager->danhSachPB_m();
+            include_once "Views/manager/phongban/thongtinpb.php";
+        }
+
+        public function thongTinTDHV()
+        {
+            $danhSachTDHV = $this->manager->danhSachTDHV_m();
+            include_once "Views/manager/tdhv/tdhv.php";
         }
 
         public function chuyenCT()
@@ -151,7 +202,7 @@
                     }
                     break ;
                 case 'baocaoluong' :
-                    $this->baoCaoLuong_m();
+                    $this->baoCaoLuong_c();
                     break ;
                 case 'chuyenct' : 
                     $this->chuyenCT();
@@ -179,6 +230,51 @@
                         }else{
                             $_SESSION['error'] = 1 ;
                             header("Location:index.php?page=manager&method=themnv");
+                        }
+                    }
+                    break ;
+                case 'lichsuluong' : 
+                    $this->lichSuLuong_c();
+                    break ;
+                case 'chitietluong' : 
+                    $this->chiTietLuong_c();
+                    break ;
+                case 'baocao' : 
+                    $this->baoCao_c();
+                    break ;
+                case 'bctangluong' :
+                    $this->bcTangLuong_c();
+                    break ;
+                case 'bcvehuu' : 
+                    $this->bcVeHuu_c() ;
+                    break ;
+                case 'chucvu' : 
+                    $this->thongTinCV() ;
+                    if(isset($_POST['themcv'])){
+                        $name = $_POST['name'] ;
+                        if(!empty($name)){
+                            $this->manager->themCV_m($name);
+                            header('Location:index.php?page=manager&method=chucvu');
+                        }
+                    }
+                    break ;
+                case 'phongban' : 
+                    $this->thongTinPB();
+                    if(isset($_POST['thempb'])){
+                        $name = $_POST['name'] ;
+                        if(!empty($name)){
+                            $this->manager->themPB_m($name);
+                            header('Location:index.php?page=manager&method=phongban');
+                        }
+                    }
+                    break ;
+                case 'tdhv' : 
+                    $this->thongTinTDHV();
+                    if(isset($_POST['themtdhv'])){
+                        $name = $_POST['name'] ;
+                        if(!empty($name)){
+                            $this->manager->themTDHV_m($name);
+                            header('Location:index.php?page=manager&method=tdhv');
                         }
                     }
                     break ;

@@ -34,11 +34,6 @@
                 $manager = new Manager_c();
                 $manager->option();
                 break;
-            case 'system':
-                include_once 'Controller/system_c.php';
-                $system = new System_c();
-                $system->option();
-                break;
             default:
                 header("Location:404.html");
                 break;

@@ -10,7 +10,7 @@
 
         //inbao cáo bảng lương
         protected function bangLuong_m($sll){
-            $sql = "SELECT tbl_lichsuluong.heso , tbl_lichsuluong.luongcoban , tbl_lichsuluong.phucap , tbl_lichsuluong.ktkl , tbl_lichsuluong.tienung , tbl_lichsuluong.workdays , tbl_lichsuluong.salary ,tbl_lichsuluong.current_time , tbl_nhanvien.name FROM tbl_lichsuluong , tbl_nhanvien WHERE tbl_lichsuluong.id_nv = tbl_nhanvien.id ORDER BY tbl_lichsuluong.id DESC LIMIT  $sll";
+            $sql = "SELECT ls.heso , ls.luongcoban , ls.phucap , ls.ktkl , ls.tienung , ls.workdays , ls.salary ,ls.current_time , tbl_nhanvien.name FROM tbl_lichsuluong ls, tbl_nhanvien WHERE ls.id_nv = tbl_nhanvien.id ORDER BY ls.id DESC LIMIT  $sll";
             $result = $this->con->prepare($sql);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -58,11 +58,11 @@
         // hiển thị danh sach sinh viên theo id
         protected function chiTietNhanVien_m($id)
         {
-            $sql = "SELECT tbl_nhanvien.id ,tbl_nhanvien.id_hdld,tbl_nhanvien.id_phongban,tbl_nhanvien.id_tdhv,tbl_nhanvien.id_chucvu,tbl_nhanvien.id_hsl,tbl_nhanvien.id_phucap, tbl_nhanvien.from_day, tbl_nhanvien.to_day, tbl_nhanvien.name , tbl_nhanvien.birthday , tbl_nhanvien.gender , tbl_nhanvien.phone , tbl_nhanvien.address ,
-             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , tbl_nhanvien.luongcoban , tbl_phucap.name as 'namePC ',tbl_chucvu.name as 'nameCV' ,
-              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien , tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
-               WHERE tbl_nhanvien.id_chucvu = tbl_chucvu.id AND tbl_nhanvien.id_phongban = tbl_phongban.id AND tbl_nhanvien.id_hdld = tbl_detail_hdld.id AND tbl_nhanvien.id_tdhv = tbl_trinhdohocvan.id 
-               AND tbl_nhanvien.id_hsl = tbl_hesoluong.id AND tbl_nhanvien.id_phucap = tbl_phucap.id AND tbl_nhanvien.id = $id";
+            $sql = "SELECT nv.id ,nv.id_hdld,nv.id_phongban,nv.id_tdhv,nv.id_chucvu,nv.id_hsl,nv.id_phucap, nv.from_day, nv.to_day, nv.name , nv.birthday , nv.gender , nv.phone , nv.address ,
+             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , nv.luongcoban , tbl_phucap.name as 'namePC ',tbl_chucvu.name as 'nameCV' ,
+              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien nv, tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
+               WHERE nv.id_chucvu = tbl_chucvu.id AND nv.id_phongban = tbl_phongban.id AND nv.id_hdld = tbl_detail_hdld.id AND nv.id_tdhv = tbl_trinhdohocvan.id 
+               AND nv.id_hsl = tbl_hesoluong.id AND nv.id_phucap = tbl_phucap.id AND nv.id = $id";
             $result = $this->con->prepare($sql);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -71,11 +71,11 @@
         // hiển thị danh sach sinh viên
         protected function danhSachNhanVien_m()
         {
-            $sql = "SELECT tbl_nhanvien.id , tbl_nhanvien.name , tbl_nhanvien.birthday , tbl_nhanvien.gender , tbl_nhanvien.phone , tbl_nhanvien.address ,
-             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , tbl_nhanvien.luongcoban , tbl_phucap.name as 'namePC ',tbl_chucvu.name as 'nameCV' ,
-              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien , tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
-               WHERE tbl_nhanvien.id_chucvu = tbl_chucvu.id AND tbl_nhanvien.id_phongban = tbl_phongban.id AND tbl_nhanvien.id_hdld = tbl_detail_hdld.id AND tbl_nhanvien.id_tdhv = tbl_trinhdohocvan.id 
-               AND tbl_nhanvien.id_hsl = tbl_hesoluong.id AND tbl_nhanvien.id_phucap = tbl_phucap.id" ;
+            $sql = "SELECT nv.id , nv.name , nv.birthday , nv.gender , nv.phone , nv.address ,
+             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , nv.luongcoban , tbl_phucap.name as 'namePC ',tbl_chucvu.name as 'nameCV' ,
+              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien nv, tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
+               WHERE nv.id_chucvu = tbl_chucvu.id AND nv.id_phongban = tbl_phongban.id AND nv.id_hdld = tbl_detail_hdld.id AND nv.id_tdhv = tbl_trinhdohocvan.id 
+               AND nv.id_hsl = tbl_hesoluong.id AND nv.id_phucap = tbl_phucap.id" ;
             $result = $this->con->prepare($sql);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -84,11 +84,49 @@
         // tim nhan vien theo phòng ban
         protected function timNhanVienPB_m($id)
         {
-            $sql = "SELECT tbl_nhanvien.id , tbl_nhanvien.name , tbl_nhanvien.birthday , tbl_nhanvien.gender , tbl_nhanvien.phone , tbl_nhanvien.address ,
-             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , tbl_nhanvien.luongcoban , tbl_phucap.name as 'namePC', tbl_phucap.money as 'moneyPC',tbl_chucvu.name as 'nameCV' ,
-              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien , tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
-               WHERE tbl_nhanvien.id_chucvu = tbl_chucvu.id AND tbl_nhanvien.id_phongban = tbl_phongban.id AND tbl_nhanvien.id_hdld = tbl_detail_hdld.id AND tbl_nhanvien.id_tdhv = tbl_trinhdohocvan.id 
-               AND tbl_nhanvien.id_hsl = tbl_hesoluong.id AND tbl_nhanvien.id_phucap = tbl_phucap.id  AND tbl_nhanvien.id_phongban = $id" ;
+            $sql = "SELECT nv.id , nv.name , nv.birthday , nv.gender , nv.phone , nv.address ,
+             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , nv.luongcoban , tbl_phucap.name as 'namePC', tbl_phucap.money as 'moneyPC',tbl_chucvu.name as 'nameCV' ,
+              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien nv , tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
+               WHERE nv.id_chucvu = tbl_chucvu.id AND nv.id_phongban = tbl_phongban.id AND nv.id_hdld = tbl_detail_hdld.id AND nv.id_tdhv = tbl_trinhdohocvan.id 
+               AND nv.id_hsl = tbl_hesoluong.id AND nv.id_phucap = tbl_phucap.id  AND nv.id_phongban = $id" ;
+            $result = $this->con->prepare($sql);
+            $result->execute();
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        //lịch sử lương
+        protected function LichSuLuong_m()
+        {
+            $sql = "SELECT ls.id, ls.id_nv , COUNT(ls.id_nv) as 'sothang', ls.heso, ls.luongcoban, ls.phucap,ls.ktkl, ls.tienung, ls.workdays, SUM(ls.salary) as 'sumsalary', ls.current_time ,tbl_nhanvien.name FROM tbl_lichsuluong ls, tbl_nhanvien WHERE ls.id_nv = tbl_nhanvien.id
+            GROUP BY ls.id_nv";
+            $result = $this->con->prepare($sql);
+            $result->execute();
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        protected function chiTietLS_Luong_m($id)
+        {
+            $sql = "SELECT ls.id, ls.id_nv , ls.heso, ls.luongcoban, ls.phucap,ls.ktkl, ls.tienung, ls.workdays, ls.salary, ls.current_time ,tbl_nhanvien.name FROM tbl_lichsuluong ls, tbl_nhanvien WHERE ls.id_nv = tbl_nhanvien.id AND ls.id_nv = $id";
+            $result = $this->con->prepare($sql);
+            $result->execute();
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        //báo cáo nhân viên tăng lương
+        protected function danhSachNV_tangluong()
+        {
+            $sql = "SELECT ls.id, ls.id_nv , COUNT(ls.id_nv) as 'sothang', ls.heso, ls.luongcoban, ls.phucap, ls.ktkl, ls.tienung, ls.workdays, ls.salary, ls.current_time , tbl_nhanvien.name FROM tbl_lichsuluong ls, tbl_nhanvien WHERE ls.id_nv = tbl_nhanvien.id GROUP BY ls.id_nv HAVING sothang >= 12";
+            $result = $this->con->prepare($sql);
+            $result->execute();
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+
+        }
+
+        //báo cáo nhân viên sắp về hưu
+        protected function danhSachNV_vehuu()
+        {
+            $sql = "SELECT ROUND(DATEDIFF(CURDATE(), birthday) / 365, 0) AS 'age' ,id, name , luongcoban
+            FROM tbl_nhanvien GROUP BY name HAVING age >= 55" ;
             $result = $this->con->prepare($sql);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -97,11 +135,11 @@
         // tim nhan vien theo ten
         protected function timNhanVien_m($name)
         {
-            $sql = "SELECT tbl_nhanvien.id , tbl_nhanvien.name , tbl_nhanvien.birthday , tbl_nhanvien.gender , tbl_nhanvien.phone , tbl_nhanvien.address ,
-             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , tbl_nhanvien.luongcoban , tbl_phucap.name as 'namePC ',tbl_chucvu.name as 'nameCV' ,
-              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien , tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
-               WHERE tbl_nhanvien.id_chucvu = tbl_chucvu.id AND tbl_nhanvien.id_phongban = tbl_phongban.id AND tbl_nhanvien.id_hdld = tbl_detail_hdld.id AND tbl_nhanvien.id_tdhv = tbl_trinhdohocvan.id 
-               AND tbl_nhanvien.id_hsl = tbl_hesoluong.id AND tbl_nhanvien.id_phucap = tbl_phucap.id  AND tbl_nhanvien.name LIKE '%$name%'" ;
+            $sql = "SELECT nv.id , nv.name , nv.birthday , nv.gender , nv.phone , nv.address ,
+             tbl_detail_hdld.name as 'nameHDLD' , tbl_hesoluong.heso as 'HSL' , nv.luongcoban , tbl_phucap.name as 'namePC ',tbl_chucvu.name as 'nameCV' ,
+              tbl_phongban.name as 'namePB' , tbl_trinhdohocvan.name as 'nameTDHV' FROM tbl_nhanvien nv, tbl_trinhdohocvan , tbl_phongban, tbl_chucvu , tbl_phucap , tbl_detail_hdld , tbl_hesoluong
+               WHERE nv.id_chucvu = tbl_chucvu.id AND nv.id_phongban = tbl_phongban.id AND nv.id_hdld = tbl_detail_hdld.id AND nv.id_tdhv = tbl_trinhdohocvan.id 
+               AND nv.id_hsl = tbl_hesoluong.id AND nv.id_phucap = tbl_phucap.id  AND nv.name LIKE '%$name%'" ;
             $result = $this->con->prepare($sql);
             $result->execute();
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -132,7 +170,7 @@
 
 
 
-        // danh sach
+        // danh sach phong ban
         protected function danhSachPB_m()
         {
             $sql = "SELECT * FROM `tbl_phongban`" ;
@@ -141,6 +179,15 @@
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        protected function themPB_m($name)
+        {
+            $sql = "INSERT INTO `tbl_phonban`(`name`) VALUES (:name)";
+            $result = $this->con->prepare($sql);
+            $result->bindParam(":name", $name);
+            $result->execute();
+        }
+
+        // khen thưởng kỷ luật
         protected function danhSachKTKL()
         {
             $sql ="SELECT * FROM `tbl_khenthuongkyluat`";
@@ -149,6 +196,7 @@
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        // chưc vụ
         protected function danhSachCV_m()
         {
             $sql = "SELECT * FROM `tbl_chucvu`" ;
@@ -157,6 +205,15 @@
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        protected function themCV_m($name)
+        {
+            $sql = "INSERT INTO `tbl_chucvu`(`name`) VALUES (:name)";
+            $result = $this->con->prepare($sql);
+            $result->bindParam(":name", $name);
+            $result->execute();
+        }
+
+        // trình độ học vấn
         protected function danhSachTDHV_m()
         {
             $sql = "SELECT * FROM `tbl_trinhdohocvan`" ;
@@ -165,6 +222,15 @@
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        protected function themTDHV_m($name)
+        {
+            $sql = "INSERT INTO `tbl_trinhdohocvan`(`name`) VALUES (:name)";
+            $result = $this->con->prepare($sql);
+            $result->bindParam(":name", $name);
+            $result->execute();
+        }
+
+        // phụ cấp
         protected function danhSachPC_m()
         {
             $sql = "SELECT * FROM `tbl_phucap`";
@@ -173,6 +239,7 @@
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        // hệ số lương
         protected function danhSachHSL_m()
         {
             $sql ="SELECT * FROM `tbl_hesoluong`" ;
@@ -181,6 +248,7 @@
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        // hợp đồng lao động
         protected function danhSachHDLD_m()
         {
             $sql = "SELECT * FROM `tbl_detail_hdld` ";

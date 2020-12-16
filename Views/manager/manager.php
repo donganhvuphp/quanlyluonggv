@@ -6,25 +6,19 @@
         <div class="row">
             <div class="col-md-12" style="display: flex;  flex-direction: row; background-color: white;">
                 <div class="box">
-                    <a href="">
+                    <a href="index.php?page=manager&method=chucvu">
                         <img src="access/images/option1.png" width="100" height="100" alt="">
                         <h5>Quản trị <br> Chức vụ</h5>
                     </a>
                 </div>
                 <div class="box">
-                    <a href="">
+                    <a href="index.php?page=manager&method=baocao">
                         <img src="access/images/option2.png" width="100" height="100" alt="">
-                        <h5>Hợp đồng <br> Lao động</h5>
+                        <h5>Báo cáo <br> Thống kê</h5>
                     </a>
                 </div>
                 <div class="box">
-                    <a href="">
-                        <img src="access/images/option3.png" width="100" height="100" alt="">
-                        <h5>Ký kết  <br> Hợp đồng</h5>
-                    </a>
-                </div>
-                <div class="box">
-                    <a href="index.php?page=manager&method=thongtinlop">
+                    <a href="index.php?page=manager&method=phongban">
                         <img src="access/images/option4.png" width="100" height="100" alt="">
                         <h5>Quản trị <br> Phòng ban</h5>
                     </a>
@@ -36,7 +30,7 @@
                     </a>
                 </div>
                 <div class="box">
-                    <a href="">
+                    <a href="index.php?page=manager&method=tdhv">
                         <img src="access/images/option6.png" width="100" height="100" alt="">
                         <h5>Trình độ <br> Học vấn</h5>
                     </a>
